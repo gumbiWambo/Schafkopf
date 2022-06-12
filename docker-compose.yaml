@@ -1,0 +1,10 @@
+version: "1"
+services:
+  api:
+    build: WebServer
+    ports:
+      - "1337:1337"
+  frontend:
+    build: schafkopf
+    ports:
+      - "80:80"

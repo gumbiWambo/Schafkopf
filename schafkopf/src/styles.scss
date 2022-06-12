@@ -1,0 +1,22 @@
+/* You can add global styles to this file, and also import other style files */
+:root {
+  --font-color: #040303;
+  --main-color: #6A7B76;
+  --secondary-color: #3A4E48;
+  --third-color: #8B9D83;
+  --forth-color: #BEB0A7;
+}
+
+body, html {
+  background-color: var(--main-color);
+  margin: 0;
+  height: 100vh;
+  width: 100vw;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr;
+}
+*{
+  font-family: system-ui;
+  color: var(--font-color);
+}

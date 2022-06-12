@@ -1,0 +1,36 @@
+:host {
+  height: 100%;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 40px 1fr 5fr;
+  grid-template-areas: "header" "heading" "menu";
+  h1 {
+    grid-area: heading;
+    justify-self: center;
+    align-self: center;
+    margin: 0;
+  }
+  #menu {
+    grid-area: menu;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    a {
+      margin: 10px;
+      text-align: center;
+      text-decoration: none;
+      background: var(--third-color);
+      padding: 5px;
+      border-radius: 5px;
+      box-sizing: border-box;
+      height: 40px;
+      line-height: 25px;
+      &:hover, &:active {
+        background: var(--secondary-color);
+        color: var(--forth-color);
+      }
+    }
+  }
+}
