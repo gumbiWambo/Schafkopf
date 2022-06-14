@@ -3,13 +3,14 @@
   "version": "1.0.0",
   "description": "Webserver for Schafkopf",
   "main": "index.js",
-  "type": "module",
   "scripts": {
     "test": "test",
     "start": "node index.js"
   },
   "dependencies": {
     "express": "^4.18.1",
+    "express-ws": "^5.0.2",
+    "uuid": "^8.3.2",
     "web-push": "^3.4.4",
     "ws": "^7.1.2"
   },

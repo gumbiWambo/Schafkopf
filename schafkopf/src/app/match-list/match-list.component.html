@@ -1,1 +1,3 @@
-<p>match-list works!</p>
+<button (click)="openMatchCreator()">Create Match</button>
+<s-match-entry *ngFor="let match of matchList"></s-match-entry>
+<s-create-match *ngIf="matchCreatorOpend" (close)="closeMatchCreator()"></s-create-match>
