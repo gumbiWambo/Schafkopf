@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, firstValueFrom, Observable, tap } from 'rxjs';
-import { Match } from 'src/app/interfaces/match.interface';
+import { MatchConfig } from 'src/app/interfaces/match-config.interface';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
@@ -13,8 +13,13 @@ export class MatchListService {
     this.connectToMatchList().pipe(tap(x => this.matches.next(x))).subscribe();
   }
 
-  public createMatch(match: Match): Promise<any> {
+  public createMatch(match: MatchConfig): Promise<any> {
     return firstValueFrom(this.http.put('http://' + environment.serverAddress + '/match', match));
+  }
+
+  public joinMatch(matchId: string) {
+    const body = { matchId };
+    return firstValueFrom(this.http.put('http://' + environment.serverAddress + '/join', body));
   }
 
   private connectToMatchList(): Observable<any[]> {

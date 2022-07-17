@@ -1,1 +1,10 @@
-<p>match works!</p>
+<div id="self">abc</div>
+<div id="player2">def</div>
+<div id="player3">ghi</div>
+<div id="player4">jkl</div>
+<div id="middle">middle</div>
+<ng-template [ngIf]="!!dialogType">
+  <ng-container [ngSwitch]="dialogType">
+    <s-ready *ngSwitchCase="'areYouReady'"></s-ready>
+  </ng-container>
+</ng-template>

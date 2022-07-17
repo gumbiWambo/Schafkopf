@@ -1,1 +1,13 @@
-<p>match-entry works!</p>
+<p>{{match.name}}</p>
+<button (click)="joinGame()">Beitreten</button>
+<div class="icons">
+  <ng-template ngFor let-item [ngForOf]="match.allowedGames">
+    <ng-container [ngSwitch]="item">
+      <img *ngSwitchCase="'geier'" src="" alt="geier">
+      <img *ngSwitchCase="'wenz'" src="" alt="wenz">
+      <img *ngSwitchCase="'solo'" src="" alt="solo">
+      <img *ngSwitchCase="'ruf'" src="" alt="ruf">
+    </ng-container>
+  </ng-template>
+</div>
+<p class="joined-players">{{ match.joinedPlayers }} / 4</p>

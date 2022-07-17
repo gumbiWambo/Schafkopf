@@ -1,11 +1,9 @@
-export enum AllowedGames{
-  SOLO = 'solo',
-  RUF = 'ruf',
-  GEIER = 'geier',
-  WENZ = 'wenz'
-}
+import { AllowedGames } from "./match-config.interface";
+
 export interface Match {
+  id: string;
   name: string;
   allowedGames: AllowedGames[];
-  isRanked: boolean
+  isRanked: boolean;
+  joinedPlayers: number;
 }

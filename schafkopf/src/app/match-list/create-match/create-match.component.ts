@@ -1,5 +1,6 @@
 import { Component, EventEmitter, HostListener, OnInit, Output } from '@angular/core';
-import { AllowedGames, Match } from 'src/app/interfaces/match.interface';
+import { NgForm } from '@angular/forms';
+import { AllowedGames, MatchConfig } from 'src/app/interfaces/match-config.interface';
 import { MatchListService } from '../services/match-list.service';
 
 @Component({
@@ -9,27 +10,35 @@ import { MatchListService } from '../services/match-list.service';
 })
 export class CreateMatchComponent implements OnInit {
   
-  @Output() close = new EventEmitter<void>();
-
-  @HostListener('click') emitClose() {
-    this.submit();
-  }
+  @Output() close = new EventEmitter<string>();
   
   constructor(private matchProvider: MatchListService) { }
 
   ngOnInit(): void {
   }
 
-  public submit() {
-    const match: Match = {
-      isRanked: false,
-      name: 'Erstes Match',
-      allowedGames: [AllowedGames.GEIER, AllowedGames.RUF, AllowedGames.SOLO, AllowedGames.WENZ]
-    };
-    this.matchProvider.createMatch(match).then((x) => {
-      console.log(x);
-      this.close.emit();
-    });
+  public submit(form: NgForm) {
+    if(form.valid) {
+      const match: MatchConfig = {
+        isRanked: form.value.isRanked,
+        name: form.value.name,
+        allowedGames: []
+      };
+      if (form.value.geier) {
+        match.allowedGames.push(AllowedGames.GEIER);
+      }
+      if (form.value.wenz) {
+        match.allowedGames.push(AllowedGames.WENZ);
+      }
+      if (form.value.solo) {
+        match.allowedGames.push(AllowedGames.SOLO);
+      }
+      if (form.value.ruf) {
+        match.allowedGames.push(AllowedGames.RUF);
+      }
+      this.matchProvider.createMatch(match)
+      .then((x) => this.close.emit(x));
+    }
   }
 
 }

@@ -1,0 +1,27 @@
+:host {
+  padding: 8px;
+  display: grid;
+  grid-template-rows: 120px 1fr 120px;
+  grid-template-columns: 120px 1fr 120px;
+  grid-template-areas: "three three three" "second middle fourth" "self self self";
+
+  #self {
+    grid-area: self;
+  }
+
+  #player2 {
+    grid-area: second;
+  }
+
+  #player3 {
+    grid-area: three;
+  }
+
+  #player4 {
+    grid-area: fourth
+  }
+
+  #middle {
+    grid-area: middle;
+  }
+}

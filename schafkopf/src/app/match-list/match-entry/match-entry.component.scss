@@ -1,0 +1,32 @@
+:host {
+  display: grid;
+  grid-template-columns: 3fr 1fr 70px;
+  grid-template-rows: 1fr 1fr;
+  grid-template-areas: "name name button" "icons players button";
+  width: 100%;
+  max-width: 100%;
+  margin: 5px;
+  padding: 8px;
+  background-color: var(--third-color);
+  box-sizing: border-box;
+  height: 100px;
+  p {
+    grid-area: name;
+    margin: 0;
+    align-self: center;
+  }
+  .icons {
+    grid-area: icons;
+    display: flex;
+    justify-content: space-evenly;
+  }
+  button {
+    overflow: hidden;
+    grid-area: button;
+  }
+  .joined-players {
+    grid-area: players;
+    align-self: center;
+    justify-self: center;
+  }
+}

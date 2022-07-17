@@ -23,6 +23,7 @@ class MatchesController {
 
   initPuts() {
     this.initPutSingleMatch();
+    this.initPutJoinMatch();
   }
 
   initPosts() {
@@ -40,6 +41,13 @@ class MatchesController {
       ws.send(JSON.stringify(this.#matchManager.matches));
       ws.on('close', () => this.#connections.splice(this.#connections.findIndex(x => x.id === connectionId), 1));
     });
+    this.#app.ws('/game', (ws, req) => {
+      console.log(req.query.id);
+      
+      ws.on('message', () => {});
+      ws.on('close', () => {});
+      ws.on('error', () => {});
+    });
   }
 
   initGetAllMatches() {
@@ -50,7 +58,6 @@ class MatchesController {
 
   initPutSingleMatch() {
     this.#app.put('/match', (req, res) => {
-      console.log(req.body);
       if (!this.validateMatchPutBody(req.body)) {
         res.sendStatus(400);
       }
@@ -60,8 +67,27 @@ class MatchesController {
     });
   }
 
+  initPutJoinMatch() {
+    this.#app.put('/join', (req, res) => {
+      if (!this.validateJoinMatchBody(req.body)) {
+        res.sendStatus(400);
+      }
+      const id = this.#matchManager.joinMatch(req.body.matchId);
+      if (id) {
+        this.sendMatchesToAllConnections();
+        res.send(JSON.stringify(id)).sendStatus(200);
+      } else {
+        res.sendStatus(404);
+      }
+    });
+  }
+
   validateMatchPutBody(body) {
     return typeof body.isRanked === 'boolean' && Array.isArray(body.allowedGames)
+  }
+  
+  validateJoinMatchBody(body) {
+    return typeof body.matchId === 'string' && !!body.matchId;
   }
 
   sendMatchesToAllConnections() {

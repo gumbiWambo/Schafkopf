@@ -1,0 +1,9 @@
+:host {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  div {
+    width: calc(100% - 10px);
+    overflow-y: auto;
+  }
+}

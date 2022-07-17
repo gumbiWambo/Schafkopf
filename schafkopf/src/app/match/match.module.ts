@@ -3,11 +3,13 @@ import { CommonModule } from '@angular/common';
 
 import { MatchRoutingModule } from './match-routing.module';
 import { MatchComponent } from './match.component';
+import { ReadyComponent } from './ready/ready.component';
 
 
 @NgModule({
   declarations: [
-    MatchComponent
+    MatchComponent,
+    ReadyComponent
   ],
   imports: [
     CommonModule,

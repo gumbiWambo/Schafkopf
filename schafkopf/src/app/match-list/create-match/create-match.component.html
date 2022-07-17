@@ -1,1 +1,10 @@
-<p>create-match works!</p>
+<form #form="ngForm" (ngSubmit)="submit(form)">
+  <label for="matchName">Name:</label><input id="matchName" type="text" name="name" placeholder="Name" ngModel required>
+  <label for="ranked">Ist ein Ranglistenspiel:</label><input id="ranked" type="checkbox" name="isRanked" ngModel>
+  <label for="geier">Geier:</label><input id="geier" type="checkbox" name="geier" ngModel>
+  <label for="wenz">Wenz:</label><input id="wenz" type="checkbox" name="wenz" ngModel>
+  <label for="adler">Adler:</label><input id="adler" type="checkbox" name="adler" ngModel>
+  <label for="solo">Solo:</label><input id="solo" type="checkbox" name="solo" ngModel>
+  <label for="ruf">Ruf:</label><input id="ruf" type="checkbox" name="ruf" ngModel>
+  <button>Spiel erstellen</button>
+</form>
